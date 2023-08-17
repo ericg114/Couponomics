@@ -1,0 +1,152 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Coupon Finder - Couponomics</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="icon" href="images/Browser_icon.png" type="image/x-icon">
+    <style>
+        .coupon-item {
+            display: inline-block;
+            width: 250px;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .coupon-title {
+            font-size: 1.2rem;
+            margin: 5px 0;
+        }
+        
+        .coupon-description {
+            font-size: 1rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <div id="page-wrapper">
+        <div id="header">
+            <h1><a href="index.html" id="logo">Couponomics</a></h1>
+            <nav id="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="current"><a href="coupon_finder.html">Coupon Finder</a></li>
+                    <li><a href="about_us.html">About Us</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <section id="banner2">
+            <header>
+                <h2>Coupon Finder</h2> 
+                <br></br>
+                <p>Find the best deals and coupons for your favorite stores!</p>
+            </header>
+        </section>
+
+        <div class="search-container">
+            <input type="text" id="storeInput" placeholder="Enter a store name">
+            <button onclick="searchCoupons()">Search</button>
+        </div>
+
+        <div id="results" class="box">
+        </div>
+
+        <div id="footer">
+            <div class="container">
+                <div class="row">
+                    <section class="col-3 col-6-narrower col-12-mobilep">
+                        <h3>Other Saving Sites</h3>
+                        <ul class="links">
+                            <li><a href="https://www.retailmenot.com/">Retailmenot</a></li>
+                            <li><a href="https://capitaloneshopping.com/">CapitalOne Shopping</a></li>
+                            <li><a href="https://www.couponcabin.com/">CouponCabin</a></li>
+                            <li><a href="https://www.myunidays.com/US/en-US">UNiDAYS</a></li>
+                            <li><a href="https://www.groupon.com/">Groupon</a></li>
+                            <li><a href="https://www.joinhoney.com/explore">Honey</a></li>
+                            <li><a href="https://slickdeals.net/">Slickdeals</a></li>
+                        </ul>
+                    </section>
+                    <section class="col-3 col-6-narrower col-12-mobilep">
+                        <h3>Useful Resources</h3>
+                        <ul class="links">
+                            <li><a href="https://www.nfcc.org/">National Foundation for credit counseling</a></li>
+                            <li><a href="https://www.consumerfinance.gov/">The Consumer Financial Protection Bureau</a></li>
+                            <li><a href="https://www.salvationarmy.org/ihq">Salvation Army</a></li>
+                            <li><a href="https://www.doe.org/">The Doe Fund</a></li>
+                            <li><a href="https://www.door.org/">The Door</a></li>
+                            <li><a href="https://catholiccharitiesny.org/">Catholic Charities</a></li>
+                            <li><a href="https://www.robinhood.org/what-we-do/">Robin Hood</a></li>
+                        </ul>
+                    </section>
+                    <section class="col-6 col-12-narrower">
+                        <h3>Get In Touch</h3>
+                        <form>
+                            <div class="row gtr-50">
+                                <div class="col-6 col-12-mobilep">
+                                    <input type="text" name="name" id="name" placeholder="Name" />
+                                </div>
+                                <div class="col-6 col-12-mobilep">
+                                    <input type="email" name="email" id="email" placeholder="Email" />
+                                </div>
+                                <div class="col-12">
+                                    <textarea name="message" id="message" placeholder="Message" rows="5"></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <ul class="actions">
+                                        <li><input type="submit" class="button alt" value="Send Message" /></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+        </div>
+    </div>
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.dropotron.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+        function searchCoupons() {
+            const storeName = document.getElementById("storeInput").value;
+
+            const couponData = [
+                { title: "20% Off Your Purchase", description: "Get 20% off your total purchase at Store XYZ." },
+                { title: "$10 Off Any Item", description: "Save $10 on any item of your choice at Store ABC." },
+                { title: "Free Shipping on Orders", description: "Enjoy free shipping on all orders at Store DEF." },
+            ];
+
+            const resultsDiv = document.getElementById("results");
+            resultsDiv.innerHTML = ""; 
+
+            const couponList = document.createElement("div");
+            couponList.className = "coupon-list";
+
+            couponData.forEach(deal => {
+                const couponItem = document.createElement("div");
+                couponItem.className = "coupon-item";
+                const title = document.createElement("h3");
+                title.className = "coupon-title";
+                title.textContent = deal.title;
+                const description = document.createElement("p");
+                description.className = "coupon-description";
+                description.textContent = deal.description;
+                couponItem.appendChild(title);
+                couponItem.appendChild(description);
+                couponList.appendChild(couponItem);
+            });
+
+            resultsDiv.appendChild(couponList);
+        }
+    </script>
+</body>
+</html>
